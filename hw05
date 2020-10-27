@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+
+void opak(char str[])
+{
+    int a = 0;
+    char strpom[25];
+    while (str[a] != '\0')
+    {
+        if (a == 0)
+        {
+            
+            char x = str[a];
+            strcat(strpom, &x);
+            a++;
+            continue;
+        }
+        else if (str[a - 1] != str[a])
+        {
+            char x = str[a];
+            strcat(strpom, &x);
+        }
+
+        a++;
+    }
+    strcpy(str, strpom);
+    puts(str);
+}
+void transC(char str[])
+{
+
+    int a = 0;
+    int z = 1;
+
+    while (str[a] != '\0')
+    {
+
+        if (z == 1 && str[a] > 'a' && str[a] < 'z')
+        {
+            str[a] -= 32; //zacatek vety
+        }
+        else if (z == 0 && str[a] > 'A' && str[a] < 'Z')
+        {
+            str[a] += 32; //vel p upro
+        }
+
+        if (str[a] == '.' || str[a] == '?' || str[a] == '!')
+        {
+            z = 1;
+            a++;
+        }
+        else
+        {
+            z = 0;
+        }
+        a++;
+    }
+    // puts(str);
+}
+int main()
+{
+    char retezec[50];
+
+    printf("zadejte retezec ");
+    fflush;
+    fgets(retezec, 20, stdin);
+    //  transC(retezec);
+    opak(retezec);
+    return 0;
+}
